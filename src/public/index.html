@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Academic Portal | Academic Record Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>Academic Portal</h2>
+                    <span>Student Records</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                    Dashboard
+                </button>
+                <button class="nav-item" data-tab="students">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Students
+                </button>
+                <button class="nav-item" data-tab="courses">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    Courses
+                </button>
+                <button class="nav-item" data-tab="faculty">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Faculty
+                </button>
+                <button class="nav-item" data-tab="enrollments">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    Enrollments
+                </button>
+                <button class="nav-item" data-tab="attendance">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Attendance
+                </button>
+                <button class="nav-item" data-tab="grades">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    Grades
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="topbar">
+                <div class="topbar-title">
+                    <h1 id="page-title">Dashboard Overview</h1>
+                    <p id="page-subtitle">Centralized Student Academic Records Management</p>
+                </div>
+            </header>
+
+            <!-- Content Container -->
+            <div class="content-container">
+
+                <!-- 1. DASHBOARD VIEW -->
+                <section class="tab-view active" id="view-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon bg-blue-subtle text-blue">👨‍🎓</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Total Students</span>
+                                <h3 class="stat-value" id="stat-students">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-green-subtle text-green">📚</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Active Courses</span>
+                                <h3 class="stat-value" id="stat-courses">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-purple-subtle text-purple">👩‍🏫</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Faculty Members</span>
+                                <h3 class="stat-value" id="stat-faculty">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon bg-yellow-subtle text-yellow">🏛️</div>
+                            <div class="stat-info">
+                                <span class="stat-label">Departments</span>
+                                <h3 class="stat-value" id="stat-departments">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <!-- Attendance Progress Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>📊 Overall Attendance Health</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="attendance-summary-box">
+                                    <div class="attendance-rate">
+                                        <span class="rate-number" id="dash-attendance-rate">0%</span>
+                                        <span class="rate-desc">Average Student Attendance</span>
+                                    </div>
+                                    <div class="attendance-pills">
+                                        <div class="pill pill-success">
+                                            <span class="pill-title">Eligible (≥ 80%)</span>
+                                            <strong id="dash-eligible-count">0</strong>
+                                        </div>
+                                        <div class="pill pill-danger">
+                                            <span class="pill-title">Ineligible (&lt; 80%)</span>
+                                            <strong id="dash-ineligible-count">0</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grade Distribution Card -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🎯 Grade Distribution (Scale out of 100)</h3>
+                            </div>
+                            <div class="card-body">
+                                <div id="grade-distribution-bars" class="distribution-bars"></div>
+                            </div>
+                        </div>
+
+                        <!-- Course Performance Overview -->
+                        <div class="card col-span-2">
+                            <div class="card-header">
+                                <h3>📈 Course Academic Performance Overview</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="data-table" id="dash-course-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Course Code</th>
+                                                <th>Course Name</th>
+                                                <th>Department</th>
+                                                <th>Enrolled</th>
+                                                <th>Avg Score (out of 100)</th>
+                                                <th>Highest Score</th>
+                                                <th>Lowest Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. STUDENTS VIEW -->
+                <section class="tab-view" id="view-students">
+                    <div class="toolbar">
+                        <div class="toolbar-left">
+                            <input type="text" id="student-search" class="form-input" placeholder="Search by name, student ID, or email...">
+                            <select id="student-degree-filter" class="form-select">
+                                <option value="">All Degree Programs</option>
+                            </select>
+                        </div>
+                        <div class="toolbar-right">
+                            <button class="btn btn-primary" id="btn-add-student">
+                                ➕ Add New Student
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="data-table" id="students-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Full Name</th>
+                                        <th>Father Name</th>
+                                        <th>Gender</th>
+                                        <th>Batch</th>
+                                        <th>Email</th>
+                                        <th>Degree Program</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. COURSES VIEW -->
+                <section class="tab-view" id="view-courses">
+                    <div class="toolbar">
+                        <div class="toolbar-right">
+                            <button class="btn btn-primary" data-add-record="courses">➕ Add Course</button>
+                            <button class="btn btn-primary" data-add-record="degree-programs">➕ Add Degree</button>
+                        </div>
+                    </div>
+                    <div class="resource-table-stack">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>📚 Courses Catalog</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table" id="courses-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Credits</th>
+                                            <th>Department</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🎓 Degree Programs</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table" id="degree-programs-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Degree ID</th>
+                                            <th>Degree Name</th>
+                                            <th>Department</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. FACULTY VIEW -->
+                <section class="tab-view" id="view-faculty">
+                    <div class="toolbar">
+                        <div class="toolbar-right">
+                            <button class="btn btn-primary" data-add-record="faculty">➕ Add Faculty</button>
+                            <button class="btn btn-primary" data-add-record="departments">➕ Add Department</button>
+                        </div>
+                    </div>
+                    <div class="resource-table-stack">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>👩‍🏫 Faculty Directory</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table" id="faculty-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Role</th>
+                                            <th>Department</th>
+                                            <th>Email</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>🏛️ Departments & Leadership</h3>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="data-table" id="departments-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Dept ID</th>
+                                            <th>Department Name</th>
+                                            <th>Head of Department (HOD)</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. ENROLLMENTS VIEW -->
+                <section class="tab-view" id="view-enrollments">
+                    <div class="toolbar">
+                        <div class="toolbar-right">
+                            <button class="btn btn-primary" id="btn-add-enrollment">
+                                ➕ Enroll Student in Course
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="data-table" id="enrollments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Course Code</th>
+                                        <th>Course Name</th>
+                                        <th>Semester</th>
+                                        <th>Instructor</th>
+                                        <th>Enrollment Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. ATTENDANCE VIEW -->
+                <section class="tab-view" id="view-attendance">
+                    <div class="toolbar">
+                        <div class="toolbar-right">
+                            <button class="btn btn-outline" id="btn-add-attendance">
+                                ➕ Add Attendance
+                            </button>
+                            <button class="btn btn-primary" id="btn-recalc-att-tab">
+                                ⚡ Sync All Exam Eligibility
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="data-table" id="attendance-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Course Code</th>
+                                        <th>Course Name</th>
+                                        <th>Semester</th>
+                                        <th>Total Hours</th>
+                                        <th>Hours Attended</th>
+                                        <th>Attendance %</th>
+                                        <th>Final Exam Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. GRADES VIEW -->
+                <section class="tab-view" id="view-grades">
+                    <div class="toolbar">
+                        <div class="toolbar-right">
+                            <button class="btn btn-outline" id="btn-add-grade" title="Add marks after attendance has been recorded.">
+                                ➕ Add Grades
+                            </button>
+                            <button class="btn btn-primary" id="btn-recalc-grades-tab">
+                                🎯 Recalculate Final Grades
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="data-table" id="grades-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student ID</th>
+                                        <th>Student Name</th>
+                                        <th>Course</th>
+                                        <th>Semester</th>
+                                        <th>Sessionals (out of 50)</th>
+                                        <th>Final Exam (out of 50)</th>
+                                        <th>Total Score (out of 100)</th>
+                                        <th>Grade</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: Add New Student -->
+    <div class="modal-backdrop" id="modal-student">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Add New Student Record</h3>
+                <button class="modal-close" data-modal="modal-student">&times;</button>
+            </div>
+            <form id="form-student">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" id="modal-student-id" class="form-input" required placeholder="e.g. S012">
+                    </div>
+                    <div class="form-group">
+                        <label>Student Full Name</label>
+                        <input type="text" id="modal-student-name" class="form-input" required placeholder="e.g. Alex Johnson">
+                    </div>
+                    <div class="form-group">
+                        <label>Father Name</label>
+                        <input type="text" id="modal-father-name" class="form-input" required placeholder="e.g. Robert Johnson">
+                    </div>
+                    <div class="grid-2col">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <select id="modal-gender" class="form-select" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Batch Year</label>
+                            <input type="number" id="modal-batch" class="form-input" required value="2023">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="modal-email" class="form-input" required placeholder="student@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Degree Program</label>
+                        <select id="modal-degree" class="form-select" required></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline modal-close" data-modal="modal-student">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Update Attendance Hours (With Live Calculator) -->
+    <div class="modal-backdrop" id="modal-attendance">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-attendance-title">Update Attendance Hours</h3>
+                <button class="modal-close" data-modal="modal-attendance">&times;</button>
+            </div>
+            <form id="form-attendance">
+                <input type="hidden" id="modal-att-student-id">
+                <input type="hidden" id="modal-att-course-code">
+                <input type="hidden" id="modal-att-semester">
+                <div class="modal-body">
+                    <div class="form-group" id="modal-att-enrollment-group" style="display: none;">
+                        <label for="modal-att-enrollment">Enrollment</label>
+                        <select id="modal-att-enrollment" class="form-select"></select>
+                    </div>
+                    <p class="mb-3"><strong id="modal-att-student-label"></strong> &bull; <span id="modal-att-course-label"></span></p>
+                    <div class="form-group">
+                        <label>Hours Attended</label>
+                        <input type="number" id="modal-att-hours" class="form-input" required min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Course Hours</label>
+                        <input type="number" id="modal-att-total" class="form-input" required min="1" max="100">
+                    </div>
+
+                    <!-- Live Calculation Card -->
+                    <div class="live-calc-box">
+                        <div class="live-calc-row">
+                            <span>Calculated Attendance:</span>
+                            <strong id="modal-live-att-pct">—</strong>
+                        </div>
+                        <div class="live-calc-row">
+                            <span>Calculated Exam Status:</span>
+                            <span id="modal-live-att-status" class="badge badge-gray">—</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline modal-close" data-modal="modal-attendance">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="modal-attendance-submit">Update Attendance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Update Marks (With Live Score & Grade Calculator) -->
+    <div class="modal-backdrop" id="modal-grade">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-grade-title">Enter / Update Student Marks</h3>
+                <button class="modal-close" data-modal="modal-grade">&times;</button>
+            </div>
+            <form id="form-grade">
+                <input type="hidden" id="modal-grade-student-id">
+                <input type="hidden" id="modal-grade-course-code">
+                <input type="hidden" id="modal-grade-semester">
+                <div class="modal-body">
+                    <div class="form-group" id="modal-grade-enrollment-group" style="display: none;">
+                        <label for="modal-grade-enrollment">Enrollment with attendance</label>
+                        <select id="modal-grade-enrollment" class="form-select"></select>
+                    </div>
+                    <p class="mb-3"><strong id="modal-grade-student-label"></strong> &bull; <span id="modal-grade-course-label"></span></p>
+                    
+                    <div id="modal-grade-ineligible-warning" class="policy-warning mb-3" style="display: none;">
+                        ⚠️ <strong>Exam Status: Ineligible.</strong> Final exam mark counts as 0 while ineligible.
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sessional Marks (Max 50)</label>
+                        <input type="number" id="modal-grade-sessionals" class="form-input" required min="0" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Final Exam Marks (Max 50)</label>
+                        <input type="number" id="modal-grade-final" class="form-input" required min="0" max="50">
+                    </div>
+
+                    <!-- Live Calculation Card -->
+                    <div class="live-calc-box">
+                        <div class="live-calc-row">
+                            <span>Total Score (out of 100):</span>
+                            <strong id="modal-live-total-score">— / 100</strong>
+                        </div>
+                        <div class="live-calc-row">
+                            <span>Calculated Grade:</span>
+                            <span id="modal-live-grade" class="badge badge-gray">—</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline modal-close" data-modal="modal-grade">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="modal-grade-submit">Save Marks</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Course Enrollment -->
+    <div class="modal-backdrop" id="modal-enrollment">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Course Enrollment Registration</h3>
+                <button class="modal-close" data-modal="modal-enrollment">&times;</button>
+            </div>
+            <form id="form-enrollment">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select Student</label>
+                        <select id="modal-enroll-student" class="form-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Course</label>
+                        <select id="modal-enroll-course" class="form-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Assigned Instructor</label>
+                        <select id="modal-enroll-faculty" class="form-select" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Academic Semester</label>
+                        <input type="text" id="modal-enroll-semester" class="form-input" required value="Fall 2023">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline modal-close" data-modal="modal-enrollment">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Enroll Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: Add or Edit Database Records -->
+    <div class="modal-backdrop" id="modal-record">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-record-title">Edit Record</h3>
+                <button class="modal-close" data-modal="modal-record">&times;</button>
+            </div>
+            <form id="form-record">
+                <div class="modal-body" id="modal-record-fields"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline modal-close" data-modal="modal-record">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toasts -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

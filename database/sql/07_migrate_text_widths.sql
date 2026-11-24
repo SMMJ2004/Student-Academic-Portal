@@ -1,0 +1,21 @@
+-- Run once after sql/06_migrate_semester_keys.sql if that migration was
+-- applied before the text-width updates were added to it.
+-- This migration only widens columns and preserves existing values.
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+
+ALTER TABLE STUDENT_DETAILS MODIFY (
+    STUDENT_NAME VARCHAR2(100 CHAR),
+    FATHER_NAME VARCHAR2(100 CHAR),
+    EMAIL VARCHAR2(254 CHAR)
+);
+ALTER TABLE COURSES MODIFY (COURSE_NAME VARCHAR2(100 CHAR));
+ALTER TABLE DEPARTMENTS MODIFY (DEPARTMENT_NAME VARCHAR2(100 CHAR));
+ALTER TABLE DEGREE_PROGRAM MODIFY (DEGREE_NAME VARCHAR2(100 CHAR));
+ALTER TABLE FACULTY MODIFY (
+    FACULTY_NAME VARCHAR2(100 CHAR),
+    ROLE VARCHAR2(50 CHAR),
+    EMAIL VARCHAR2(254 CHAR)
+);
+
+COMMIT;
+PROMPT Text-width migration completed. Existing rows were preserved.

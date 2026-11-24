@@ -1,0 +1,28 @@
+# Database files
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# Local credentials and Oracle wallets
+.env
+.env.*
+!.env.example
+wallet/
+oracle-wallet/
+*.p12
+*.sso
+
+# Node modules
+node_modules/
+
+# npm logs
+npm-debug.log*
+
+# Scratch & temporary
+scratch*
+scratch_extract.py
+
+# OS files
+Thumbs.db
+.DS_Store

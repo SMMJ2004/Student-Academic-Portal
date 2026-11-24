@@ -1,0 +1,22 @@
+{
+  "name": "student-academic-record-database-app",
+  "version": "1.0.0",
+  "description": "Full-stack web application connected to the Oracle Student Academic Record Database.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "oracledb": "^26.0.0"
+  },
+  "keywords": [
+    "oracle-sql",
+    "academic-records",
+    "database-management",
+    "sql-developer"
+  ],
+  "author": "",
+  "license": "ISC"
+}
