@@ -1,4 +1,4 @@
-# Student Academic Record Database - Oracle SQL & Web App
+# Student Academic Portal - Oracle SQL & Web App
 
 ## Project Overview
 
